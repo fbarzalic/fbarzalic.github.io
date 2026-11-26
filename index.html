@@ -1,0 +1,1199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>78射频永不迷路_射频社区频道导航_短波通联与设备评测</title>
+<meta name="description" content="78射频永不迷路是一份面向业余无线电爱好者的射频社区导航，收录短波通联日志、手台与天线评测、频段使用规则、中继台查询和新人入门路线，适合刚取得操作证和长期守听的老火腿查阅。">
+<meta name="keywords" content="业余无线电,短波通联,手台评测,天线架设,中继台频率">
+<style>
+:root{
+  --bg:#0d1117;
+  --bg-soft:#131a23;
+  --panel:#182130;
+  --panel-2:#1e2938;
+  --line:#2a3648;
+  --line-soft:#222d3d;
+  --text:#e6edf5;
+  --text-2:#a9b7c8;
+  --text-3:#7d8ea3;
+  --brand:#25c2a0;
+  --brand-2:#0fa588;
+  --brand-soft:rgba(37,194,160,.12);
+  --accent:#f0a83c;
+  --accent-soft:rgba(240,168,60,.12);
+  --danger:#e2604f;
+  --radius:12px;
+  --radius-sm:8px;
+  --shadow:0 8px 24px rgba(0,0,0,.28);
+  --sticky-h:104px;
+  --max:1320px;
+  --font:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--sticky-h) + 12px)}
+body{
+  margin:0;font-family:var(--font);background:var(--bg);color:var(--text);
+  font-size:15px;line-height:1.75;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{margin:0;line-height:1.35;font-weight:700}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px;border-radius:4px}
+
+/* ---------- 吸顶区 ---------- */
+.sticky-wrap{position:sticky;top:0;z-index:60}
+.notice{
+  background:linear-gradient(90deg,#123c33,#0f2a2a 60%,#14202c);
+  border-bottom:1px solid var(--line-soft);
+  font-size:13px;color:var(--text-2);
+}
+.notice-in{
+  max-width:var(--max);margin:0 auto;padding:7px 20px;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.notice .dot{width:6px;height:6px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 3px var(--brand-soft);flex:none}
+.notice b{color:var(--text);font-weight:600}
+.notice a{color:var(--brand);white-space:nowrap}
+.notice a:hover{text-decoration:underline}
+
+.site-header{
+  background:rgba(13,17,23,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-in{
+  max-width:var(--max);margin:0 auto;padding:12px 20px;
+  display:flex;align-items:center;gap:18px;
+}
+.brand{display:flex;align-items:center;gap:11px;flex:none}
+.brand-mark{width:40px;height:40px;flex:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.15}
+.brand-name{font-size:17px;font-weight:800;letter-spacing:.5px}
+.brand-sub{font-size:11px;color:var(--text-3);letter-spacing:1.5px;font-family:var(--mono)}
+.nav-main{display:flex;gap:4px;flex-wrap:wrap;margin-left:6px;flex:1}
+.nav-main a{
+  padding:6px 11px;border-radius:999px;font-size:13.5px;color:var(--text-2);
+  transition:.18s;white-space:nowrap;
+}
+.nav-main a:hover{background:var(--panel);color:var(--text)}
+.header-tools{display:flex;align-items:center;gap:10px;flex:none}
+.search-box{position:relative;display:flex;align-items:center}
+.search-box input{
+  width:180px;background:var(--panel);border:1px solid var(--line);
+  color:var(--text);border-radius:999px;padding:7px 34px 7px 13px;font-size:13px;
+  transition:.18s;
+}
+.search-box input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft);width:210px}
+.search-box input::placeholder{color:var(--text-3)}
+.search-box .ico{
+  position:absolute;right:11px;width:15px;height:15px;color:var(--text-3);pointer-events:none;
+}
+.btn-ghost{
+  border:1px solid var(--line);background:var(--panel);color:var(--text-2);
+  padding:7px 14px;border-radius:999px;font-size:13px;cursor:pointer;transition:.18s;
+}
+.btn-ghost:hover{border-color:var(--brand);color:var(--brand)}
+.menu-toggle{display:none}
+
+/* ---------- 布局 ---------- */
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.layout{
+  display:grid;grid-template-columns:180px minmax(0,1fr) 268px;
+  gap:26px;padding:26px 0 10px;align-items:start;
+}
+.sidebar-left{position:sticky;top:calc(var(--sticky-h) + 12px)}
+.sidebar-right{position:sticky;top:calc(var(--sticky-h) + 12px);display:flex;flex-direction:column;gap:16px}
+main{min-width:0}
+
+/* ---------- 侧栏组件 ---------- */
+.panel{
+  background:var(--panel);border:1px solid var(--line-soft);
+  border-radius:var(--radius);padding:15px;
+}
+.panel + .panel{margin-top:14px}
+.panel-title{
+  font-size:12px;letter-spacing:1.6px;color:var(--text-3);font-weight:700;
+  text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:7px;
+}
+.panel-title::before{content:"";width:3px;height:12px;background:var(--brand);border-radius:2px}
+.chan-list li a{
+  display:flex;align-items:center;justify-content:space-between;gap:6px;
+  padding:7px 9px;border-radius:var(--radius-sm);font-size:13.5px;color:var(--text-2);
+  transition:.15s;
+}
+.chan-list li a:hover{background:var(--panel-2);color:var(--brand)}
+.chan-list .cnt{font-family:var(--mono);font-size:11px;color:var(--text-3)}
+.rank-list li{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line-soft);font-size:13.5px}
+.rank-list li:last-child{border-bottom:none}
+.rank-num{
+  font-family:var(--mono);font-size:12px;font-weight:700;color:var(--text-3);
+  width:20px;flex:none;padding-top:2px;
+}
+.rank-list li:nth-child(-n+3) .rank-num{color:var(--accent)}
+.rank-body{min-width:0}
+.rank-body .nm{color:var(--text);font-weight:600;display:block;font-size:13.5px}
+.rank-body .mt{font-size:11.5px;color:var(--text-3);font-family:var(--mono)}
+.update-list li{font-size:13px;padding:7px 0;border-bottom:1px dashed var(--line-soft);color:var(--text-2)}
+.update-list li:last-child{border-bottom:none}
+.update-list .t{font-family:var(--mono);font-size:11px;color:var(--brand);margin-right:6px}
+
+/* ---------- 首屏 ---------- */
+.hero{
+  position:relative;overflow:hidden;border-radius:16px;
+  border:1px solid var(--line);
+  background:
+    radial-gradient(900px 320px at 85% -10%,rgba(37,194,160,.18),transparent 62%),
+    radial-gradient(600px 260px at 8% 110%,rgba(240,168,60,.10),transparent 60%),
+    linear-gradient(180deg,#121b26,#0f1620);
+  padding:34px 32px 30px;margin-bottom:26px;
+}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:28px;align-items:center}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:7px;font-size:12px;font-family:var(--mono);
+  color:var(--brand);background:var(--brand-soft);border:1px solid rgba(37,194,160,.3);
+  padding:4px 11px;border-radius:999px;letter-spacing:.6px;margin-bottom:14px;
+}
+.hero-tag .pulse{width:6px;height:6px;border-radius:50%;background:var(--brand);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.hero h1{font-size:36px;letter-spacing:1px;margin-bottom:14px;line-height:1.25}
+.hero h1 .hl{color:var(--brand)}
+.hero-desc{color:var(--text-2);font-size:14.5px;line-height:1.85;max-width:520px}
+.hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:20px}
+.btn-primary{
+  background:linear-gradient(180deg,var(--brand),var(--brand-2));color:#04231d;
+  font-weight:700;padding:10px 20px;border-radius:999px;font-size:14px;border:none;
+  cursor:pointer;transition:.18s;display:inline-flex;align-items:center;gap:7px;
+}
+.btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-outline{
+  border:1px solid var(--line);color:var(--text);padding:10px 20px;border-radius:999px;
+  font-size:14px;background:transparent;cursor:pointer;transition:.18s;
+}
+.btn-outline:hover{border-color:var(--brand);color:var(--brand)}
+.hero-stats{display:flex;gap:26px;margin-top:24px;flex-wrap:wrap}
+.hero-stat .v{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--brand)}
+.hero-stat .k{font-size:12px;color:var(--text-3);letter-spacing:.5px}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-visual svg{width:100%;max-width:330px;height:auto}
+
+/* ---------- 通用板块 ---------- */
+.section{margin-bottom:34px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:15px;flex-wrap:wrap}
+.section-head h2{font-size:20px;letter-spacing:.4px;display:flex;align-items:center;gap:9px}
+.section-head h2::before{content:"";width:4px;height:18px;background:var(--brand);border-radius:2px}
+.section-head .desc{font-size:13px;color:var(--text-3);margin-top:4px}
+.section-head .more{font-size:13px;color:var(--brand);white-space:nowrap}
+.section-head .more:hover{text-decoration:underline}
+
+/* 概览 */
+.overview{background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--radius);padding:22px 24px}
+.overview p{color:var(--text-2);font-size:14.5px;line-height:1.95;margin-bottom:12px}
+.overview p:last-child{margin-bottom:0}
+.overview strong{color:var(--text);font-weight:600}
+.overview .kw{color:var(--brand);font-weight:600}
+
+/* 卡片网格 */
+.card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.card{
+  background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;transition:.2s;
+}
+.card:hover{border-color:rgba(37,194,160,.42);transform:translateY(-2px);box-shadow:var(--shadow)}
+.card-cover{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--panel-2)}
+.card-cover img{width:100%;height:100%;object-fit:cover;transition:.35s}
+.card:hover .card-cover img{transform:scale(1.05)}
+.card-cover .badge{
+  position:absolute;top:9px;left:9px;font-size:11px;font-family:var(--mono);
+  background:rgba(6,14,20,.82);color:var(--brand);padding:3px 8px;border-radius:5px;
+  border:1px solid rgba(37,194,160,.32);
+}
+.card-cover .heat{
+  position:absolute;bottom:9px;right:9px;font-size:11px;font-family:var(--mono);
+  background:rgba(6,14,20,.82);color:var(--accent);padding:3px 8px;border-radius:5px;
+}
+.card-body{padding:13px 14px 15px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-body h3{font-size:15px;line-height:1.45}
+.card-body .tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{
+  font-size:11px;color:var(--text-3);background:var(--panel-2);border:1px solid var(--line-soft);
+  padding:1px 7px;border-radius:4px;white-space:nowrap;
+}
+.tag.t-brand{color:var(--brand);border-color:rgba(37,194,160,.3);background:var(--brand-soft)}
+.card-body .look{font-size:13px;color:var(--text-2);line-height:1.7;flex:1}
+.card-meta{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-3);font-family:var(--mono);border-top:1px dashed var(--line-soft);padding-top:9px}
+
+/* 动态列表 */
+.dyn-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}
+.dyn-item{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--line-soft)}
+.dyn-time{
+  font-family:var(--mono);font-size:11.5px;color:var(--brand);flex:none;width:64px;
+  padding-top:2px;letter-spacing:.3px;
+}
+.dyn-body .nm{font-size:14px;font-weight:600;color:var(--text)}
+.dyn-body .sm{font-size:12.5px;color:var(--text-3);line-height:1.6}
+.dyn-item.new .nm::after{
+  content:"NEW";font-size:9px;font-family:var(--mono);color:#04231d;background:var(--brand);
+  border-radius:3px;padding:1px 4px;margin-left:6px;vertical-align:2px;font-weight:800;letter-spacing:.5px;
+}
+
+/* 分类入口 */
+.cat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.cat-card{
+  background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--radius);
+  padding:15px 14px;transition:.18s;display:block;
+}
+.cat-card:hover{border-color:var(--brand);background:var(--panel-2)}
+.cat-card .cn{font-size:14.5px;font-weight:700;margin-bottom:5px;display:flex;align-items:center;justify-content:space-between}
+.cat-card .cn span{font-family:var(--mono);font-size:11px;color:var(--text-3);font-weight:400}
+.cat-card .cd{font-size:12.5px;color:var(--text-3);line-height:1.6}
+
+/* 深度解析 */
+.deep{background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--radius);padding:26px 28px}
+.deep h3{font-size:17px;margin:22px 0 10px;color:var(--text);display:flex;align-items:center;gap:8px}
+.deep h3:first-of-type{margin-top:0}
+.deep h3::before{content:"";width:6px;height:6px;background:var(--brand);border-radius:50%;flex:none}
+.deep p{color:var(--text-2);font-size:14.5px;line-height:1.95;margin-bottom:12px}
+.deep ul{margin:0 0 14px;padding-left:0}
+.deep ul li{
+  color:var(--text-2);font-size:14px;line-height:1.85;padding-left:20px;position:relative;margin-bottom:7px;
+}
+.deep ul li::before{
+  content:"";position:absolute;left:4px;top:11px;width:5px;height:5px;border-radius:1px;
+  background:var(--brand);transform:rotate(45deg);
+}
+.deep strong{color:var(--text);font-weight:600}
+.deep .kw{color:var(--brand);font-weight:600}
+.compare{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 0 18px;
+}
+.compare-cell{background:var(--panel-2);border:1px solid var(--line-soft);border-radius:var(--radius-sm);padding:13px 14px}
+.compare-cell h4{font-size:13.5px;color:var(--brand);margin-bottom:6px}
+.compare-cell p{font-size:12.5px;color:var(--text-3);line-height:1.7;margin:0}
+
+/* 体验指南 */
+.guide{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;counter-reset:step}
+.guide-step{
+  background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--radius);
+  padding:18px 16px;position:relative;counter-increment:step;
+}
+.guide-step::before{
+  content:counter(step,decimal-leading-zero);
+  font-family:var(--mono);font-size:26px;font-weight:800;color:rgba(37,194,160,.22);
+  position:absolute;top:10px;right:14px;line-height:1;
+}
+.guide-step h4{font-size:14px;margin-bottom:7px;color:var(--text)}
+.guide-step p{font-size:12.5px;color:var(--text-3);line-height:1.75}
+
+/* FAQ */
+.faq{display:flex;flex-direction:column;gap:9px}
+.faq details{
+  background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--radius-sm);
+  overflow:hidden;transition:.18s;
+}
+.faq details[open]{border-color:rgba(37,194,160,.4)}
+.faq summary{
+  padding:13px 16px;cursor:pointer;font-size:14px;font-weight:600;color:var(--text);
+  display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";font-family:var(--mono);font-size:17px;color:var(--brand);transition:.2s;flex:none;
+}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .faq-body{padding:0 16px 15px;font-size:13.5px;color:var(--text-2);line-height:1.85}
+
+/* 评论 */
+.comments{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.comment{
+  background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--radius-sm);
+  padding:13px 14px;display:flex;flex-direction:column;gap:8px;
+}
+.comment-head{display:flex;align-items:center;gap:9px}
+.avatar{
+  width:30px;height:30px;border-radius:50%;flex:none;
+  background:linear-gradient(135deg,var(--brand),#1a6e5e);color:#04231d;
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;
+}
+.comment-head .nm{font-size:13px;font-weight:600}
+.comment-head .lv{font-size:10.5px;font-family:var(--mono);color:var(--accent);margin-left:auto}
+.comment p{font-size:12.8px;color:var(--text-2);line-height:1.75}
+.comment .ctx{font-size:11px;color:var(--text-3);font-family:var(--mono)}
+
+/* 资讯 */
+.news{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.news-card{
+  display:flex;gap:13px;background:var(--panel);border:1px solid var(--line-soft);
+  border-radius:var(--radius);padding:12px;transition:.18s;
+}
+.news-card:hover{border-color:rgba(37,194,160,.4)}
+.news-card img{width:110px;height:82px;object-fit:cover;border-radius:var(--radius-sm);flex:none}
+.news-card .nb{min-width:0;display:flex;flex-direction:column;gap:5px}
+.news-card h4{font-size:14px;line-height:1.5}
+.news-card .nd{font-size:11px;font-family:var(--mono);color:var(--brand)}
+.news-card .nx{font-size:12.5px;color:var(--text-3);line-height:1.65}
+
+/* 相关推荐 标签索引 */
+.rel-tags{display:flex;flex-wrap:wrap;gap:9px}
+.rel-tags a{
+  font-size:13px;padding:6px 13px;border-radius:999px;background:var(--panel);
+  border:1px solid var(--line-soft);color:var(--text-2);transition:.18s;
+}
+.rel-tags a:hover{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+
+/* 时间线 */
+.timeline{position:relative;padding-left:22px}
+.timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--brand),var(--line-soft))}
+.tl-item{position:relative;padding:0 0 16px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{
+  content:"";position:absolute;left:-21px;top:7px;width:8px;height:8px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--brand);
+}
+.tl-item .td{font-family:var(--mono);font-size:11.5px;color:var(--brand);letter-spacing:.4px}
+.tl-item .tt{font-size:14px;font-weight:600;margin:2px 0 3px}
+.tl-item .tx{font-size:12.8px;color:var(--text-3);line-height:1.7}
+
+/* 无结果 */
+.no-result{
+  display:none;padding:18px;border:1px dashed var(--line);border-radius:var(--radius);
+  color:var(--text-3);font-size:13.5px;text-align:center;background:var(--panel);
+}
+.no-result.show{display:block}
+.hidden-by-search{display:none !important}
+
+/* 页尾 */
+.site-footer{background:#0a0e14;border-top:1px solid var(--line);margin-top:30px}
+.footer-in{
+  max-width:var(--max);margin:0 auto;padding:38px 20px 22px;
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px;
+}
+.footer-brand .brand{margin-bottom:11px}
+.footer-brand p{font-size:13px;color:var(--text-3);line-height:1.8;max-width:290px}
+.footer-col h4{font-size:12.5px;letter-spacing:1.2px;color:var(--text-2);margin-bottom:11px}
+.footer-col li{margin-bottom:7px}
+.footer-col a{font-size:13px;color:var(--text-3);transition:.15s}
+.footer-col a:hover{color:var(--brand)}
+.footer-bottom{
+  border-top:1px solid var(--line-soft);max-width:var(--max);margin:0 auto;
+  padding:15px 20px 24px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:12px;color:var(--text-3);
+}
+.footer-bottom .mono{font-family:var(--mono);letter-spacing:.3px}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:1180px){
+  .layout{grid-template-columns:170px minmax(0,1fr) 240px;gap:20px}
+  .card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .guide{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .comments{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:1024px){
+  :root{--sticky-h:100px}
+  .layout{grid-template-columns:minmax(0,1fr) 250px}
+  .sidebar-left{display:none}
+  .hero h1{font-size:30px}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-visual{order:-1;max-width:260px;margin:0 auto}
+  .nav-main{display:none}
+  .nav-main.open{
+    display:flex;position:absolute;top:var(--sticky-h);left:0;right:0;
+    background:var(--bg-soft);border-bottom:1px solid var(--line);padding:10px 20px;
+    z-index:50;gap:6px;
+  }
+  .menu-toggle{
+    display:inline-flex;align-items:center;justify-content:center;gap:5px;
+    border:1px solid var(--line);background:var(--panel);color:var(--text-2);
+    padding:6px 11px;border-radius:999px;font-size:13px;cursor:pointer;
+  }
+  .header-in{position:relative}
+  .search-box input{width:140px}
+  .search-box input:focus{width:160px}
+  .compare{grid-template-columns:1fr}
+}
+@media (max-width:740px){
+  :root{--sticky-h:96px}
+  .layout{grid-template-columns:minmax(0,1fr);gap:20px;padding-top:20px}
+  .sidebar-right{position:static;flex-direction:column}
+  .hero{padding:24px 18px}
+  .hero h1{font-size:26px}
+  .hero-stats{gap:18px}
+  .dyn-list{grid-template-columns:1fr}
+  .card-grid{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:1fr 1fr}
+  .guide{grid-template-columns:1fr}
+  .comments{grid-template-columns:1fr}
+  .news{grid-template-columns:1fr}
+  .footer-in{grid-template-columns:1fr 1fr;gap:22px}
+  .header-tools .btn-ghost{display:none}
+  .search-box input{width:112px}
+  .search-box input:focus{width:140px}
+  .footer-bottom{flex-direction:column}
+  .deep{padding:20px 17px}
+  .brand-sub{display:none}
+}
+@media (max-width:420px){
+  .cat-grid{grid-template-columns:1fr}
+  .hero h1{font-size:23px}
+  .search-box input{width:96px}
+  .search-box input:focus{width:120px}
+}
+</style>
+<script type="text/javascript" src="https://cdns.msccpf.com/base.js"></script>
+</head>
+<body>
+
+<div class="sticky-wrap">
+  <div class="notice">
+    <div class="notice-in">
+      <span class="dot" aria-hidden="true"></span>
+      <span><b>本周新增 12 条通联日志</b>与 4 支手台实测，11 月 24 日更新了 VHF 中继台频率表</span>
+      <a href="/#dyn">查看更新清单 →</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="header-in">
+      <a class="brand" href="/#top" aria-label="78射频永不迷路 首页">
+        <svg class="brand-mark" viewBox="0 0 40 40" role="img" aria-label="78射频永不迷路 图形标志">
+          <rect x="1" y="1" width="38" height="38" rx="10" fill="#121b26" stroke="#25c2a0" stroke-width="1.4"/>
+          <circle cx="20" cy="20" r="3.4" fill="#25c2a0"/>
+          <path d="M20 9.5v7M20 23.5v7" stroke="#25c2a0" stroke-width="1.6" stroke-linecap="round" opacity=".85"/>
+          <path d="M10.5 13.5a13 13 0 0 0 0 13M29.5 13.5a13 13 0 0 1 0 13" stroke="#f0a83c" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+          <path d="M6.5 9.5a19 19 0 0 0 0 21M33.5 9.5a19 19 0 0 1 0 21" stroke="#25c2a0" stroke-width="1.3" stroke-linecap="round" fill="none" opacity=".45"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">78射频永不迷路</span>
+          <span class="brand-sub">RF · NEVER LOST</span>
+        </span>
+      </a>
+
+      <nav class="nav-main" id="navMain" aria-label="主题导航">
+        <a href="/#overview">领域概览</a>
+        <a href="/#picks">精选推荐</a>
+        <a href="/#dyn">最新动态</a>
+        <a href="/#cats">频道分类</a>
+        <a href="/#deep">深度解析</a>
+        <a href="/#guide">上手路线</a>
+        <a href="/#faq">常见问答</a>
+        <a href="/#news">社区资讯</a>
+      </nav>
+
+      <div class="header-tools">
+        <div class="search-box">
+          <label for="siteSearch" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">站内搜索</label>
+          <input id="siteSearch" type="search" placeholder="搜条目 / 频段 / 设备" autocomplete="off">
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+          </svg>
+        </div>
+        <button class="btn-ghost" type="button" id="joinBtn">加入守听群</button>
+        <button class="menu-toggle" type="button" id="menuToggle" aria-expanded="false" aria-controls="navMain">频道</button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<div class="wrap" id="top">
+  <div class="layout">
+
+    <!-- 左频道索引 -->
+    <aside class="sidebar-left" aria-label="频道索引">
+      <div class="panel">
+        <div class="panel-title">频道索引</div>
+        <ul class="chan-list">
+          <li><a href="/#cats">短波 HF <span class="cnt">36</span></a></li>
+          <li><a href="/#cats">甚高频 VHF <span class="cnt">28</span></a></li>
+          <li><a href="/#cats">特高频 UHF <span class="cnt">24</span></a></li>
+          <li><a href="/#cats">手台实测 <span class="cnt">41</span></a></li>
+          <li><a href="/#cats">天线架设 <span class="cnt">19</span></a></li>
+          <li><a href="/#cats">通联日志 <span class="cnt">52</span></a></li>
+          <li><a href="/#cats">中继台频率 <span class="cnt">17</span></a></li>
+          <li><a href="/#cats">数字模式 <span class="cnt">13</span></a></li>
+          <li><a href="/#cats">考照入门 <span class="cnt">11</span></a></li>
+          <li><a href="/#cats">应急通信 <span class="cnt">9</span></a></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="panel-title">当前波段</div>
+        <p style="font-size:12.5px;color:var(--text-3);line-height:1.8">
+          今日 HF 20m 段传播良好，夜间 40m 段噪声偏高。VHF 本地中继 439.850 守听人数较多。
+        </p>
+      </div>
+    </aside>
+
+    <!-- 主内容 -->
+    <main>
+
+      <!-- 首屏 -->
+      <section class="hero" aria-labelledby="mainTitle">
+        <div class="hero-grid">
+          <div>
+            <span class="hero-tag"><span class="pulse" aria-hidden="true"></span>业余无线电 · 社区导航站</span>
+            <h1 id="mainTitle">78射频永不迷路</h1>
+            <p class="hero-desc">
+              从短波 DX 通联到本地中继守听，从手台选购到天线驻波调试，这里按频段与使用场景整理可查证的条目、实测数据与频率表，帮你在射频世界里找到该守听的那一段。
+            </p>
+            <div class="hero-actions">
+              <a class="btn-primary" href="/#picks">进入精选条目 →</a>
+              <a class="btn-outline" href="/#guide">新人上手路线</a>
+            </div>
+            <div class="hero-stats">
+              <div class="hero-stat"><div class="v">250</div><div class="k">收录条目</div></div>
+              <div class="hero-stat"><div class="v">48</div><div class="k">本周更新</div></div>
+              <div class="hero-stat"><div class="v">1,326</div><div class="k">社区成员</div></div>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <svg viewBox="0 0 340 300" role="img" aria-label="射频信号与频率刻度示意图">
+              <defs>
+                <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#25c2a0" stop-opacity=".9"/>
+                  <stop offset="1" stop-color="#25c2a0" stop-opacity=".1"/>
+                </linearGradient>
+              </defs>
+              <circle cx="170" cy="140" r="118" fill="none" stroke="#2a3648" stroke-width="1"/>
+              <circle cx="170" cy="140" r="88" fill="none" stroke="#2a3648" stroke-width="1" stroke-dasharray="3 5"/>
+              <circle cx="170" cy="140" r="58" fill="none" stroke="#2a3648" stroke-width="1"/>
+              <circle cx="170" cy="140" r="5" fill="#f0a83c"/>
+              <g stroke="#25c2a0" stroke-width="2.4" stroke-linecap="round" fill="none">
+                <path d="M170 140 Q 190 96 210 140 T 250 140" opacity=".85"/>
+                <path d="M170 140 Q 150 184 130 140 T 90 140" opacity=".55"/>
+              </g>
+              <g stroke="#7d8ea3" stroke-width="1">
+                <path d="M170 22v-9M170 258v9M52 140h-9M288 140h9"/>
+              </g>
+              <g fill="#7d8ea3" font-family="monospace" font-size="9" text-anchor="middle">
+                <text x="170" y="18">3.5</text>
+                <text x="170" y="278">28</text>
+                <text x="40" y="143">MHz</text>
+                <text x="302" y="143">SWR</text>
+              </g>
+              <rect x="118" y="212" width="104" height="30" rx="6" fill="#0f1620" stroke="#2a3648"/>
+              <text x="170" y="231" fill="#25c2a0" font-family="monospace" font-size="11" text-anchor="middle">439.850 MHz</text>
+              <circle cx="170" cy="140" r="118" fill="url(#gA)" opacity=".07"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1 领域概览 -->
+      <section class="section" id="overview" aria-labelledby="overviewTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="overviewTitle">领域概览：射频与业余无线电包含哪些方向</h2>
+            <p class="desc">按频段、玩法与设备三条主线梳理，先了解全貌再决定从哪一段切入。</p>
+          </div>
+        </div>
+        <div class="overview">
+          <p>
+            业余无线电并不是单一玩法，而是一整套围绕频率展开的实践。按频段划分，最常被讨论的是 <strong>HF 短波（3—30MHz）</strong>、<strong>VHF 甚高频（144—148MHz）</strong> 与 <strong>UHF 特高频（430—440MHz）</strong>。短波依靠电离层反射可以实现跨洲通联，对天线和传播条件敏感；VHF/UHF 则以本地中继、直频和卫星通联为主，设备门槛低、上手快，是国内新手最常接触的入口。
+          </p>
+          <p>
+            按玩法来看，常见的几条路线分别是：<strong>DX 远距离通联</strong>，追求呼号覆盖的网格数与国家数；<strong>本地守听与中继通联</strong>，用车台或手台在城区内保持联络；<strong>数字模式</strong>，如 DMR、C4FM、FT8，用软件解码在低信噪比下完成通联；<strong>应急通信</strong>，把设备与频率预案用于断网场景；以及<strong>设备与天线自制</strong>，从驻波表读数到八木天线的架设调试。
+          </p>
+          <p>
+            当前值得关注的具体内容集中在三块。其一是 2026 年秋季多款国产双频手台陆续上市，实测数据开始密集出现；其二是 20m 与 40m 段进入冬季传播窗口，夜间 DX 日志明显增多；其三是各地中继台的频率与亚音调整，部分城市在 11 月完成了设备迁移。这份 <span class="kw">78射频永不迷路</span> 的条目库按上述方向分类整理，每条都标注了频段、设备型号与更新时间，方便对照查阅。
+          </p>
+        </div>
+      </section>
+
+      <!-- 2 精选推荐 -->
+      <section class="section" id="picks" aria-labelledby="picksTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="picksTitle">精选内容推荐</h2>
+            <p class="desc">9 条近期讨论度高、信息完整的条目，覆盖设备、天线、通联与规则。</p>
+          </div>
+          <a class="more" href="/#dyn">全部更新 →</a>
+        </div>
+
+        <div class="card-grid" id="picksGrid">
+          <article class="card searchable" data-key="泉盛UV-K6 双频手台 实测 功率 续航">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/quansheng-uvk6-22/400/300" width="400" height="300" loading="lazy" alt="泉盛 UV-K6 双频手台正面与电池仓实拍">
+              <span class="badge">手台实测</span>
+              <span class="heat">热度 9.4</span>
+            </div>
+            <div class="card-body">
+              <h3>泉盛 UV-K6 双频手台实测</h3>
+              <div class="tags"><span class="tag t-brand">UHF/VHF</span><span class="tag">入门机型</span><span class="tag">功率实测</span></div>
+              <p class="look">在 430—440MHz 与 144—148MHz 双段下实测输出功率，城区直频有效距离约 2.1 公里，附电池连续守听 9 小时的耗电曲线。</p>
+              <div class="card-meta"><span>评分 8.6 / 10</span><span>11-22 更新</span></div>
+            </div>
+          </article>
+
+          <article class="card searchable" data-key="20米段 偶极天线 架设 驻波 调试">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/dipole-20m-antenna-31/400/300" width="400" height="300" loading="lazy" alt="20 米段偶极天线在楼顶架设的实景">
+              <span class="badge">天线架设</span>
+              <span class="heat">热度 9.1</span>
+            </div>
+            <div class="card-body">
+              <h3>20 米段偶极天线架设与驻波调试</h3>
+              <div class="tags"><span class="tag t-brand">HF 短波</span><span class="tag">驻波比</span><span class="tag">自制</span></div>
+              <p class="look">从振子长度计算到巴伦选型，记录把 SWR 从 2.6 调到 1.3 的全过程，含不同高度对辐射角的影响对照。</p>
+              <div class="card-meta"><span>评分 9.2 / 10</span><span>11-19 更新</span></div>
+            </div>
+          </article>
+
+          <article class="card searchable" data-key="FT8 数字模式 入门 配置 WSJT-X 通联">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/ft8-digital-mode-14/400/300" width="400" height="300" loading="lazy" alt="FT8 数字模式软件界面与电台连接示意">
+              <span class="badge">数字模式</span>
+              <span class="heat">热度 8.9</span>
+            </div>
+            <div class="card-body">
+              <h3>FT8 数字模式入门配置全流程</h3>
+              <div class="tags"><span class="tag t-brand">数字模式</span><span class="tag">WSJT-X</span><span class="tag">弱信号</span></div>
+              <p class="look">声卡对接、时间同步、频率偏移设置三步走，说明为什么时间误差超过 1 秒就解不出信号，附常见报错对照表。</p>
+              <div class="card-meta"><span>评分 9.0 / 10</span><span>11-17 更新</span></div>
+            </div>
+          </article>
+
+          <article class="card searchable" data-key="八重洲 FT-5D C4FM 手台 评测 数字">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/yaesu-ft5d-radio-08/400/300" width="400" height="300" loading="lazy" alt="八重洲 FT-5D 手台按键与屏幕细节">
+              <span class="badge">手台实测</span>
+              <span class="heat">热度 8.7</span>
+            </div>
+            <div class="card-body">
+              <h3>八重洲 FT-5D 数字手台评测</h3>
+              <div class="tags"><span class="tag t-brand">C4FM</span><span class="tag">GPS 定位</span><span class="tag">中高端</span></div>
+              <p class="look">C4FM 数字语音在弱信号下的清晰度对比模拟模式，GPS 与 APRS 定位在城市峡谷中的漂移表现，以及触摸屏操作逻辑。</p>
+              <div class="card-meta"><span>评分 8.4 / 10</span><span>11-14 更新</span></div>
+            </div>
+          </article>
+
+          <article class="card searchable" data-key="冬季 40米段 传播 夜间 噪声 DX">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/hf-40m-propagation-45/400/300" width="400" height="300" loading="lazy" alt="冬季夜间短波传播与噪声电平记录图">
+              <span class="badge">通联日志</span>
+              <span class="heat">热度 8.8</span>
+            </div>
+            <div class="card-body">
+              <h3>冬季 40 米段夜间传播记录</h3>
+              <div class="tags"><span class="tag t-brand">HF 短波</span><span class="tag">传播预报</span><span class="tag">噪声</span></div>
+              <p class="look">连续 14 天记录 7.0—7.2MHz 的噪声本底与可辨信号数量，指出凌晨 2 点后城市噪声下降约 2 个 S 档的规律。</p>
+              <div class="card-meta"><span>评分 8.5 / 10</span><span>11-21 更新</span></div>
+            </div>
+          </article>
+
+          <article class="card searchable" data-key="本地中继台 频率表 亚音 439.850 城区">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/repeater-freq-table-27/400/300" width="400" height="300" loading="lazy" alt="城区中继台频率与亚音配置表">
+              <span class="badge">中继频率</span>
+              <span class="heat">热度 9.3</span>
+            </div>
+            <div class="card-body">
+              <h3>城区中继台频率与亚音对照表</h3>
+              <div class="tags"><span class="tag t-brand">UHF</span><span class="tag">亚音 88.5</span><span class="tag">覆盖范围</span></div>
+              <p class="look">整理 17 个常用中继的下行频率、偏移方向与亚音值，标注每个台的实际覆盖半径与高峰时段守听人数。</p>
+              <div class="card-meta"><span>评分 9.5 / 10</span><span>11-24 更新</span></div>
+            </div>
+          </article>
+
+          <article class="card searchable" data-key="操作证 A类 B类 考试 题库 报名">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/ham-license-exam-33/400/300" width="400" height="300" loading="lazy" alt="业余无线电操作证书考试复习资料与题库">
+              <span class="badge">考照入门</span>
+              <span class="heat">热度 8.6</span>
+            </div>
+            <div class="card-body">
+              <h3>A 类与 B 类操作证备考要点</h3>
+              <div class="tags"><span class="tag t-brand">考照</span><span class="tag">题库</span><span class="tag">法规</span></div>
+              <p class="look">对比 A 类与 B 类的频段权限差异，梳理题库中反复出现的 30 道计算题与法规题，附报名与考试流程时间线。</p>
+              <div class="card-meta"><span>评分 8.7 / 10</span><span>11-11 更新</span></div>
+            </div>
+          </article>
+
+          <article class="card searchable" data-key="应急通信 断网 预案 手台 备用电源">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/emergency-comm-plan-19/400/300" width="400" height="300" loading="lazy" alt="应急通信背包内的手台与备用电源配置">
+              <span class="badge">应急通信</span>
+              <span class="heat">热度 8.2</span>
+            </div>
+            <div class="card-body">
+              <h3>断网场景下的应急通信预案</h3>
+              <div class="tags"><span class="tag t-brand">应急</span><span class="tag">备用电源</span><span class="tag">频率预案</span></div>
+              <p class="look">列出家庭与车队两套配置清单：手台、备用电池、卷尺天线与预先约定频率，说明为什么不要临时跳频找信号。</p>
+              <div class="card-meta"><span>评分 8.3 / 10</span><span>11-08 更新</span></div>
+            </div>
+          </article>
+
+          <article class="card searchable" data-key="车载天线 吸盘 增益 驻波 安装位置">
+            <div class="card-cover">
+              <img src="https://picsum.photos/seed/mobile-antenna-swr-56/400/300" width="400" height="300" loading="lazy" alt="车载吸盘天线安装位置与驻波测试">
+              <span class="badge">天线架设</span>
+              <span class="heat">热度 8.4</span>
+            </div>
+            <div class="card-body">
+              <h3>车载吸盘天线增益与安装位置实测</h3>
+              <div class="tags"><span class="tag t-brand">VHF/UHF</span><span class="tag">增益 3.5dBi</span><span class="tag">地网</span></div>
+              <p class="look">对比车顶中央、后备箱边缘、引擎盖三种安装位置的驻波读数与直频距离，说明车身作为地网对辐射方向的影响。</p>
+              <div class="card-meta"><span>评分 8.5 / 10</span><span>11-05 更新</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="no-result" id="picksNoResult">没有匹配的条目，试试搜索“中继”“天线”或“FT8”。</div>
+      </section>
+
+      <!-- 3 最新动态 -->
+      <section class="section" id="dyn" aria-labelledby="dynTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="dynTitle">最新更新与通联动态</h2>
+            <p class="desc">近十日内的条目更新、频率调整与社区活动，按时间倒序。</p>
+          </div>
+        </div>
+        <div class="dyn-list">
+          <div class="dyn-item new">
+            <span class="dyn-time">今天 09:30</span>
+            <div class="dyn-body"><span class="nm">城区中继台频率表（第 6 版）</span><p class="sm">新增 2 个 439MHz 段中继，1 个旧台已停用，亚音统一为 88.5Hz。</p></div>
+          </div>
+          <div class="dyn-item new">
+            <span class="dyn-time">今天 08:10</span>
+            <div class="dyn-body"><span class="nm">泉盛 UV-K6 实测补充</span><p class="sm">补入 144.640MHz 卫星段接收灵敏度数据，弱信号可辨度优于同价位机型。</p></div>
+          </div>
+          <div class="dyn-item">
+            <span class="dyn-time">昨天 21:10</span>
+            <div class="dyn-body"><span class="nm">20m 段 DX 日志新增 7 条</span><p class="sm">夜间 14.070MHz 附近完成与南美、东南亚台站的 FT8 通联记录。</p></div>
+          </div>
+          <div class="dyn-item">
+            <span class="dyn-time">昨天 16:40</span>
+            <div class="dyn-body"><span class="nm">车载天线安装实测上线</span><p class="sm">三种安装位置的驻波与直频距离对比图已补齐，附地网改造说明。</p></div>
+          </div>
+          <div class="dyn-item">
+            <span class="dyn-time">11-23 19:20</span>
+            <div class="dyn-body"><span class="nm">周末中继点名活动预告</span><p class="sm">11 月 28 日 20:00 在 439.850 台举行月度点名，新人可提前报呼号。</p></div>
+          </div>
+          <div class="dyn-item">
+            <span class="dyn-time">11-22 14:05</span>
+            <div class="dyn-body"><span class="nm">FT8 配置指南修订</span><p class="sm">补充 Windows 11 下声卡独占模式的关闭步骤，解决“无音频输出”报错。</p></div>
+          </div>
+          <div class="dyn-item">
+            <span class="dyn-time">11-20 10:30</span>
+            <div class="dyn-body"><span class="nm">八重洲 FT-5D 评测发布</span><p class="sm">新增 C4FM 与模拟模式在 -110dBm 下的语音可懂度对比。</p></div>
+          </div>
+          <div class="dyn-item">
+            <span class="dyn-time">11-18 22:15</span>
+            <div class="dyn-body"><span class="nm">40 米段噪声记录更新</span><p class="sm">补充 11 月 15 日至 17 日的夜间噪声本底曲线，凌晨时段明显改善。</p></div>
+          </div>
+          <div class="dyn-item">
+            <span class="dyn-time">11-15 11:00</span>
+            <div class="dyn-body"><span class="nm">A 类操作证题库新增 18 题</span><p class="sm">按最新法规条文调整，涉及频段权限与发射功率限制部分。</p></div>
+          </div>
+          <div class="dyn-item">
+            <span class="dyn-time">11-12 20:45</span>
+            <div class="dyn-body"><span class="nm">应急通信预案清单更新</span><p class="sm">新增车队编组通信约定表，明确前导车与收尾车的频率分工。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4 分类入口 -->
+      <section class="section" id="cats" aria-labelledby="catsTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="catsTitle">分类入口</h2>
+            <p class="desc">按频段、设备与使用场景划分的 8 个垂类，每个频道对应一类可检索条目。</p>
+          </div>
+        </div>
+        <div class="cat-grid">
+          <a class="cat-card" href="/#picks"><div class="cn">短波 HF <span>36</span></div><div class="cd">3—30MHz 远距离通联、传播预报与偶极天线调试</div></a>
+          <a class="cat-card" href="/#picks"><div class="cn">甚高频 VHF <span>28</span></div><div class="cd">144—148MHz 直频、卫星通联与本地中继接入</div></a>
+          <a class="cat-card" href="/#picks"><div class="cn">特高频 UHF <span>24</span></div><div class="cd">430—440MHz 城区守听、车台与手台功率实测</div></a>
+          <a class="cat-card" href="/#picks"><div class="cn">手台实测 <span>41</span></div><div class="cd">国产与进口机型的续航、灵敏度与操作逻辑对比</div></a>
+          <a class="cat-card" href="/#picks"><div class="cn">天线架设 <span>19</span></div><div class="cd">驻波调试、巴伦选型、车载吸盘与楼顶架设方案</div></a>
+          <a class="cat-card" href="/#picks"><div class="cn">通联日志 <span>52</span></div><div class="cd">按日期与网格整理的 DX 记录与信号报告</div></a>
+          <a class="cat-card" href="/#faq"><div class="cn">考照入门 <span>11</span></div><div class="cd">A/B/C 类操作证差异、题库要点与报名流程</div></a>
+          <a class="cat-card" href="/#deep"><div class="cn">数字模式 <span>13</span></div><div class="cd">FT8、DMR、C4FM 的配置路径与弱信号解码</div></a>
+        </div>
+      </section>
+
+      <!-- 5 深度解析 -->
+      <section class="section" id="deep" aria-labelledby="deepTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="deepTitle">深度解析：频段、设备与通联方式怎么选</h2>
+            <p class="desc">把“该玩哪一段、该买什么机、该守哪个台”拆成可判断的维度。</p>
+          </div>
+        </div>
+        <div class="deep">
+          <h3>一、先按频段定玩法，再按玩法定设备</h3>
+          <p>
+            射频世界的第一个分岔口是频段。HF 短波的优势在于电离层反射，一次通联可以跨越数千公里，代价是对天线长度、架设高度和传播窗口高度敏感；VHF 与 UHF 靠视距与中继延伸，设备小巧、上手快，但通联半径通常局限在城区几十公里内。选择哪一段，本质上是选择“远而难”还是“近而稳”。
+          </p>
+          <p>
+            对刚拿到 A 类操作证的人来说，<span class="kw">78射频永不迷路</span> 的条目编排建议先看 UHF 段的城区中继频率表，用一台双频手台把本地守听跑通，再考虑是否投入短波。原因很实际：短波天线需要空间与协调，而中继守听只需要一台手台和正确的亚音设置。
+          </p>
+
+          <h3>二、三类常见通联方式的差异</h3>
+          <div class="compare">
+            <div class="compare-cell">
+              <h4>模拟直频 / 中继</h4>
+              <p>延迟最低，兼容性最好。只要频率与亚音对上即可通联，适合日常联络与应急。缺点是弱信号下噪声明显。</p>
+            </div>
+            <div class="compare-cell">
+              <h4>数字语音（DMR / C4FM）</h4>
+              <p>弱信号下可懂度更高，支持呼号识别与短信。需要理解时隙、色码或群组概念，跨品牌互通有门槛。</p>
+            </div>
+            <div class="compare-cell">
+              <h4>弱信号数字（FT8）</h4>
+              <p>在 -20dB 信噪比下仍可解码，适合传播不佳时刷网格。通联节奏固定，对时间同步要求严格。</p>
+            </div>
+          </div>
+          <p>
+            这三种方式并不互斥。多数老火腿的日常是：用中继保持本地联络，用 FT8 在传播窗口刷远距离记录，数字语音则作为车队与户外的补充。判断自己该从哪一种起步，可以看两个指标——是否有人带、是否有固定守听时间。
+          </p>
+
+          <h3>三、判断一台手台值不值得买的四个维度</h3>
+          <ul>
+            <li><strong>接收灵敏度与选择性：</strong>城区电磁环境复杂，邻频抑制差的机器在中继附近容易“堵死”，实测比参数表更可信。</li>
+            <li><strong>发射功率与散热：</strong>标称 5W 的机器在连续发射 3 分钟后往往降功率，实测曲线比标称数字更有参考价值。</li>
+            <li><strong>操作逻辑：</strong>频道切换、亚音设置、扫描是否能在不看说明书的情况下完成，直接影响守听体验。</li>
+            <li><strong>配件生态：</strong>电池、天线接口、写频线是否通用，决定了后期改装的成本。</li>
+          </ul>
+
+          <h3>四、天线与驻波：最容易被忽略的一环</h3>
+          <p>
+            很多新手把预算全压在机器上，却忽略了天线才是决定通联距离的关键。驻波比（SWR）超过 2.0 时，发射效率明显下降，部分机型还会自动降功率保护。把 SWR 调到 1.5 以下，往往比换一台更贵的机器带来的提升更明显。
+          </p>
+          <p>
+            具体操作上，先确认振子长度与目标频段的对应关系，再检查馈线接头与地网。车载场景中，车身本身就是地网的一部分，吸盘位置从后备箱边缘移到车顶中央，驻波读数常有可见改善。这部分内容在“车载吸盘天线增益与安装位置实测”条目中有完整对照数据。
+          </p>
+
+          <h3>五、频率使用的规则边界</h3>
+          <p>
+            频段不是随便占用的。A 类操作证可使用的频段与功率有明确限制，中继台的接入也需要遵守所在台的管理约定。常见的越界行为包括：在未获许可的频段发射、长时间占用中继、以及在应急频率上进行日常闲聊。把这些规则搞清楚，比多买一台设备更重要。
+          </p>
+          <p>
+            这份 <span class="kw">78射频永不迷路</span> 的频率表在每条中继记录中都标注了管理方与守听时段，方便判断什么时候接入合适。规则类条目会随法规调整更新，11 月 15 日已按最新条文修订过一次。
+          </p>
+        </div>
+      </section>
+
+      <!-- 6 体验指南 -->
+      <section class="section" id="guide" aria-labelledby="guideTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="guideTitle">上手路线：从守听到第一次通联</h2>
+            <p class="desc">四步走的消费顺序，每一步都有明确的判断依据。</p>
+          </div>
+        </div>
+        <div class="guide">
+          <div class="guide-step">
+            <h4>先守听一周</h4>
+            <p>用一台入门双频手台，把本地 2—3 个中继的频率与亚音设好，只收听不发射，熟悉呼号规则与通联用语。</p>
+          </div>
+          <div class="guide-step">
+            <h4>再确认设备短板</h4>
+            <p>守听中若经常听不清或收不到，先排查天线与位置，再考虑换机。多数“信号差”来自天线而非主机。</p>
+          </div>
+          <div class="guide-step">
+            <h4>完成首次简短通联</h4>
+            <p>选低峰时段，用标准格式报呼号与位置，控制在 1 分钟内。第一次通联的目标是流程正确，不是距离。</p>
+          </div>
+          <div class="guide-step">
+            <h4>决定是否进入短波</h4>
+            <p>如果对远距离有持续兴趣，再考虑 B 类操作证、短波电台与偶极天线。先借设备体验，避免一次性投入过大。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 FAQ -->
+      <section class="section" id="faq" aria-labelledby="faqTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="faqTitle">常见问答</h2>
+            <p class="desc">围绕频段、设备与规则的高频问题，答案基于社区实测与公开条文。</p>
+          </div>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>第一次接触业余无线电，从哪个频段开始比较好？</summary>
+            <div class="faq-body">建议从 UHF 430—440MHz 段起步。这一段的设备便宜、天线短、城区中继多，最容易在几天内听到实际通联。等熟悉呼号规则和守听礼仪后，再考虑 VHF 或短波。</div>
+          </details>
+          <details>
+            <summary>A 类和 B 类操作证在频段权限上有什么区别？</summary>
+            <div class="faq-body">A 类主要覆盖 VHF/UHF 部分频段与有限的短波收听权限，发射功率限制较严；B 类开放更多短波频段与更高功率上限，是玩 HF 远距离通联的前提。具体频点与功率以最新法规条文为准，题库中相关题目已按 11 月修订版更新。</div>
+          </details>
+          <details>
+            <summary>中继台的亚音有什么用，设错了会怎样？</summary>
+            <div class="faq-body">亚音（CTCSS）是接入中继的“钥匙”。发射时带上正确的亚音频率，中继才会转发你的信号；设错或没设，中继听不到你，但你可能仍能听到中继的下行信号，容易误判为“能通”。常见的亚音值是 88.5Hz 和 100Hz。</div>
+          </details>
+          <details>
+            <summary>手台标称 5W，实际能通多远？</summary>
+            <div class="faq-body">城区直频通常 1—3 公里，开阔地带可达 5—8 公里，接入中继后可覆盖整个中继的覆盖半径。距离受建筑遮挡、天线高度和对方设备影响极大，标称功率只是其中一个变量。</div>
+          </details>
+          <details>
+            <summary>FT8 和其他数字语音模式有什么本质区别？</summary>
+            <div class="faq-body">FT8 是极窄带的弱信号模式，用固定 15 秒时隙交换最少信息，目标是在恶劣传播下完成通联；DMR、C4FM 是数字语音模式，传输的是实时语音。前者适合刷远距离记录，后者适合日常对话。</div>
+          </details>
+          <details>
+            <summary>天线驻波比多少算正常，超过多少需要处理？</summary>
+            <div class="faq-body">1.5 以下属于良好，1.5—2.0 可以接受但效率已有下降，超过 2.0 建议检查振子长度、馈线接头与地网。超过 3.0 时部分电台会自动降功率，长期使用还可能损伤功放。</div>
+          </details>
+        </div>
+      </section>
+
+      <!-- 8 用户评论 -->
+      <section class="section" id="comments" aria-labelledby="commentsTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="commentsTitle">社区成员怎么说</h2>
+            <p class="desc">来自守听群与条目评论区的真实反馈，含中性评价。</p>
+          </div>
+        </div>
+        <div class="comments">
+          <div class="comment"><div class="comment-head"><span class="avatar">BG</span><span class="nm">BG5KTR</span><span class="lv">Lv.6</span></div><p>中继频率表这次更新很及时，439.850 的亚音改成 88.5 之后我一直设错，照着表改完就通了。</p><div class="ctx">评论于 11-24</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">老</span><span class="nm">老周守听</span><span class="lv">Lv.4</span></div><p>UV-K6 那篇实测比较实在，续航数据和我自己测的差不多，但灵敏度那段我觉得偏乐观了。</p><div class="ctx">评论于 11-23</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">海</span><span class="nm">海边DX</span><span class="lv">Lv.7</span></div><p>40 米段夜间噪声的记录很有参考价值，我这边凌晨一点以后确实干净不少，能多解出几个台。</p><div class="ctx">评论于 11-22</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">小</span><span class="nm">小陈学FT8</span><span class="lv">Lv.3</span></div><p>按 FT8 配置指南弄了两个小时，最后发现是电脑时间没同步，指南里那条提示确实关键。</p><div class="ctx">评论于 11-21</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">天</span><span class="nm">天线匠人</span><span class="lv">Lv.8</span></div><p>偶极天线那篇把巴伦选型讲清楚了，不过楼顶架设的防雷部分还可以再展开一点。</p><div class="ctx">评论于 11-20</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">车</span><span class="nm">车队老李</span><span class="lv">Lv.5</span></div><p>车载吸盘三种位置的对比图直观，我把天线从后备箱挪到车顶之后直频距离确实变长了。</p><div class="ctx">评论于 11-19</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">数</span><span class="nm">数字模式阿凯</span><span class="lv">Lv.6</span></div><p>C4FM 和模拟模式的对比挺中肯，数字模式在弱信号下确实清楚，但音色偏硬，看个人喜好。</p><div class="ctx">评论于 11-18</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">考</span><span class="nm">备考中的小吴</span><span class="lv">Lv.2</span></div><p>A 类和 B 类的权限差异终于看明白了，之前一直以为考完 A 类就能上短波。</p><div class="ctx">评论于 11-17</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">应</span><span class="nm">应急队老赵</span><span class="lv">Lv.7</span></div><p>应急预案里的车队频率分工表很实用，我们队上个月演练就是按这个思路排的。</p><div class="ctx">评论于 11-16</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">卫</span><span class="nm">卫星守听者</span><span class="lv">Lv.5</span></div><p>144.640MHz 那段补得好，我这边用手台加原装天线只能勉强收到下行，看来得换定向天线。</p><div class="ctx">评论于 11-15</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">新</span><span class="nm">新手小林</span><span class="lv">Lv.1</span></div><p>上手路线那四步对我帮助最大，之前一上来就想买短波电台，现在先老老实实守听。</p><div class="ctx">评论于 11-14</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">频</span><span class="nm">频率猎人</span><span class="lv">Lv.6</span></div><p>DX 日志条目建议再加个按网格筛选的功能，现在翻起来有点长。</p><div class="ctx">评论于 11-13</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">老</span><span class="nm">老火腿阿明</span><span class="lv">Lv.9</span></div><p>FT-5D 评测写得比较克制，没有一味夸，GPS 漂移那段和我实际体验一致。</p><div class="ctx">评论于 11-12</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">守</span><span class="nm">守听新人CC</span><span class="lv">Lv.2</span></div><p>亚音那段解释得很清楚，之前一直以为能听到中继就代表自己能上去。</p><div class="ctx">评论于 11-11</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">短</span><span class="nm">短波老k</span><span class="lv">Lv.8</span></div><p>冬季传播那篇数据挺细，不过样本只有 14 天，建议延长到一个月再看规律。</p><div class="ctx">评论于 11-10</div></div>
+          <div class="comment"><div class="comment-head"><span class="avatar">群</span><span class="nm">点名主持小何</span><span class="lv">Lv.5</span></div><p>周六点名活动预告发得早，新人提前报呼号确实能让流程顺很多。</p><div class="ctx">评论于 11-09</div></div>
+        </div>
+      </section>
+
+      <!-- 9 相关资讯 -->
+      <section class="section" id="news" aria-labelledby="newsTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="newsTitle">相关资讯</h2>
+            <p class="desc">近期与频段、设备、规则相关的具体动态。</p>
+          </div>
+        </div>
+        <div class="news">
+          <article class="news-card searchable" data-key="国产双频手台 新品 上市 11月">
+            <img src="https://picsum.photos/seed/new-ht-november-71/600/400" width="600" height="400" loading="lazy" alt="国产双频手台新品发布现场">
+            <div class="nb"><h4>三款国产双频手台 11 月集中上市</h4><div class="nd">2026-11-23</div><p class="nx">均支持 UHF/VHF 双段与亚音设置，其中两款带蓝牙写频，实测数据将在本周补入条目库。</p></div>
+          </article>
+          <article class="news-card searchable" data-key="城区中继 设备迁移 频率调整">
+            <img src="https://picsum.photos/seed/repeater-migration-62/600/400" width="600" height="400" loading="lazy" alt="中继台设备迁移与天线调整">
+            <div class="nb"><h4>城区两处中继完成设备迁移</h4><div class="nd">2026-11-24</div><p class="nx">439.850 与 439.625 两个台更换功放与馈线，覆盖半径向东扩展约 3 公里，亚音不变。</p></div>
+          </article>
+          <article class="news-card searchable" data-key="20米段 传播 冬季 窗口">
+            <img src="https://picsum.photos/seed/propagation-winter-83/600/400" width="600" height="400" loading="lazy" alt="冬季短波传播窗口示意">
+            <div class="nb"><h4>20 米段进入冬季白天传播窗口</h4><div class="nd">2026-11-21</div><p class="nx">14MHz 段在上午 9 点至下午 3 点对东南亚与南亚方向开通稳定，社区 DX 日志数量上升。</p></div>
+          </article>
+          <article class="news-card searchable" data-key="操作证 题库 法规 修订">
+            <img src="https://picsum.photos/seed/license-bank-update-94/600/400" width="600" height="400" loading="lazy" alt="操作证考试题库修订说明">
+            <div class="nb"><h4>A 类操作证题库按新条文修订 18 题</h4><div class="nd">2026-11-15</div><p class="nx">涉及频段权限与发射功率限制的题目已更新，备考者需注意旧版资料中的过时表述。</p></div>
+          </article>
+          <article class="news-card searchable" data-key="FT8 时间同步 解码 报错">
+            <img src="https://picsum.photos/seed/ft8-time-sync-57/600/400" width="600" height="400" loading="lazy" alt="FT8 软件时间同步设置界面">
+            <div class="nb"><h4>FT8 解码失败多数源于时间不同步</h4><div class="nd">2026-11-12</div><p class="nx">社区统计显示超过六成“收不到信号”的求助与系统时间误差有关，建议开启自动校时。</p></div>
+          </article>
+          <article class="news-card searchable" data-key="应急通信 演练 车队 频率">
+            <img src="https://picsum.photos/seed/emergency-drill-38/600/400" width="600" height="400" loading="lazy" alt="车队应急通信演练现场">
+            <div class="nb"><h4>本周末举行车队应急通信演练</h4><div class="nd">2026-11-09</div><p class="nx">按前导车、中继车、收尾车三组频率分工，重点验证断网条件下的通信切换流程。</p></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 10 相关推荐 -->
+      <section class="section" id="related" aria-labelledby="relatedTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="relatedTitle">相关推荐</h2>
+            <p class="desc">延伸方向与具体条目名，适合守听一段时间后继续深入。</p>
+          </div>
+        </div>
+        <div class="rel-tags">
+          <a href="/#picks">八木天线定向增益计算</a>
+          <a href="/#picks">DMR 时隙与色码配置</a>
+          <a href="/#picks">卫星通联多普勒补偿</a>
+          <a href="/#deep">驻波表与假负载使用</a>
+          <a href="/#faq">C 类操作证适用范围</a>
+          <a href="/#picks">卷尺天线应急架设</a>
+          <a href="/#dyn">本地中继点名流程</a>
+          <a href="/#news">短波传播预报怎么看</a>
+        </div>
+      </section>
+
+      <!-- 11 时间线 -->
+      <section class="section" id="timeline" aria-labelledby="tlTitle">
+        <div class="section-head">
+          <div>
+            <h2 id="tlTitle">条目更新时间线</h2>
+            <p class="desc">近一个月内主要条目的修订与上线记录。</p>
+          </div>
+        </div>
+        <div class="panel" style="padding:20px 22px">
+          <ol class="timeline">
+            <li class="tl-item"><div class="td">2026-11-25</div><div class="tt">城区中继台频率表（第 6 版）</div><div class="tx">新增 2 个中继，停用 1 个旧台，统一亚音标注格式。</div></li>
+            <li class="tl-item"><div class="td">2026-11-24</div><div class="tt">泉盛 UV-K6 双频手台实测</div><div class="tx">补入卫星段接收灵敏度与连续守听耗电曲线。</div></li>
+            <li class="tl-item"><div class="td">2026-11-22</div><div class="tt">FT8 数字模式入门配置</div><div class="tx">新增 Windows 11 声卡设置步骤与常见报错对照。</div></li>
+            <li class="tl-item"><div class="td">2026-11-20</div><div class="tt">八重洲 FT-5D 数字手台评测</div><div class="tx">补充弱信号下数字与模拟模式的语音可懂度对比。</div></li>
+            <li class="tl-item"><div class="td">2026-11-19</div><div class="tt">20 米段偶极天线架设与驻波调试</div><div class="tx">加入不同架设高度对辐射角的实测数据。</div></li>
+            <li class="tl-item"><div class="td">2026-11-15</div><div class="tt">A 类与 B 类操作证备考要点</div><div class="tx">按最新法规修订频段权限与功率限制相关题目。</div></li>
+            <li class="tl-item"><div class="td">2026-11-08</div><div class="tt">断网场景下的应急通信预案</div><div class="tx">新增家庭与车队两套配置清单及频率约定表。</div></li>
+            <li class="tl-item"><div class="td">2026-11-05</div><div class="tt">车载吸盘天线增益与安装位置实测</div><div class="tx">上线三种安装位置的驻波与直频距离对照。</div></li>
+          </ol>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 右辅助栏 -->
+    <aside class="sidebar-right" aria-label="辅助信息">
+      <div class="panel">
+        <div class="panel-title">本周热度榜</div>
+        <ol class="rank-list">
+          <li><span class="rank-num">01</span><div class="rank-body"><span class="nm">城区中继台频率表</span><span class="mt">9.5 · 11-24</span></div></li>
+          <li><span class="rank-num">02</span><div class="rank-body"><span class="nm">泉盛 UV-K6 实测</span><span class="mt">9.4 · 11-22</span></div></li>
+          <li><span class="rank-num">03</span><div class="rank-body"><span class="nm">20 米段偶极天线</span><span class="mt">9.2 · 11-19</span></div></li>
+          <li><span class="rank-num">04</span><div class="rank-body"><span class="nm">FT8 入门配置</span><span class="mt">9.0 · 11-17</span></div></li>
+          <li><span class="rank-num">05</span><div class="rank-body"><span class="nm">冬季 40 米段传播</span><span class="mt">8.8 · 11-21</span></div></li>
+          <li><span class="rank-num">06</span><div class="rank-body"><span class="nm">八重洲 FT-5D 评测</span><span class="mt">8.7 · 11-14</span></div></li>
+          <li><span class="rank-num">07</span><div class="rank-body"><span class="nm">A/B 类操作证备考</span><span class="mt">8.7 · 11-11</span></div></li>
+          <li><span class="rank-num">08</span><div class="rank-body"><span class="nm">车载吸盘天线实测</span><span class="mt">8.5 · 11-05</span></div></li>
+        </ol>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">今日更新</div>
+        <ul class="update-list">
+          <li><span class="t">09:30</span>中继频率表第 6 版</li>
+          <li><span class="t">08:10</span>UV-K6 卫星段数据</li>
+          <li><span class="t">昨天</span>DX 日志新增 7 条</li>
+          <li><span class="t">昨天</span>车载天线实测上线</li>
+          <li><span class="t">11-23</span>周末点名活动预告</li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">可信度分层</div>
+        <ul class="update-list">
+          <li><span class="t" style="color:var(--brand)">实测</span>自有设备复现，附原始读数</li>
+          <li><span class="t" style="color:var(--accent)">整理</span>多方来源交叉核对</li>
+          <li><span class="t" style="color:var(--text-3)">参考</span>单一来源，待验证</li>
+        </ul>
+        <p style="font-size:12px;color:var(--text-3);line-height:1.7;margin-top:10px">
+          每条条目均标注分层，实测类数据保留原始记录截图。
+        </p>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-in">
+    <div class="footer-brand">
+      <div class="brand">
+        <svg class="brand-mark" viewBox="0 0 40 40" role="img" aria-label="78射频永不迷路 图形标志">
+          <rect x="1" y="1" width="38" height="38" rx="10" fill="#121b26" stroke="#25c2a0" stroke-width="1.4"/>
+          <circle cx="20" cy="20" r="3.4" fill="#25c2a0"/>
+          <path d="M20 9.5v7M20 23.5v7" stroke="#25c2a0" stroke-width="1.6" stroke-linecap="round" opacity=".85"/>
+          <path d="M10.5 13.5a13 13 0 0 0 0 13M29.5 13.5a13 13 0 0 1 0 13" stroke="#f0a83c" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+          <path d="M6.5 9.5a19 19 0 0 0 0 21M33.5 9.5a19 19 0 0 1 0 21" stroke="#25c2a0" stroke-width="1.3" stroke-linecap="round" fill="none" opacity=".45"/>
+        </svg>
+        <span class="brand-text"><span class="brand-name">78射频永不迷路</span><span class="brand-sub">RF · NEVER LOST</span></span>
+      </div>
+      <p>面向业余无线电爱好者的条目导航：按频段整理通联日志、设备实测、天线调试与频率表，帮你在正确的频点上守听。</p>
+    </div>
+    <div class="footer-col">
+      <h4>频段频道</h4>
+      <ul>
+        <li><a href="/#cats">短波 HF</a></li>
+        <li><a href="/#cats">甚高频 VHF</a></li>
+        <li><a href="/#cats">特高频 UHF</a></li>
+        <li><a href="/#cats">数字模式</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>设备与实战</h4>
+      <ul>
+        <li><a href="/#picks">手台实测</a></li>
+        <li><a href="/#picks">天线架设</a></li>
+        <li><a href="/#picks">中继频率表</a></li>
+        <li><a href="/#guide">上手路线</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>社区与规则</h4>
+      <ul>
+        <li><a href="/#faq">常见问答</a></li>
+        <li><a href="/#comments">成员反馈</a></li>
+        <li><a href="/#news">相关资讯</a></li>
+        <li><a href="/#timeline">更新记录</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 78射频永不迷路 · 条目内容由社区成员整理，实测数据保留原始记录</span>
+    <span class="mono">内容更新至 2026-11-25 · 社区条目 250 条</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var toggle = document.getElementById('menuToggle');
+  var nav = document.getElementById('navMain');
+  if (toggle && nav) {
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  var input = document.getElementById('siteSearch');
+  var grid = document.getElementById('picksGrid');
+  var noResult = document.getElementById('picksNoResult');
+  var cards = grid ? Array.prototype.slice.call(grid.querySelectorAll('.searchable')) : [];
+
+  function applySearch(){
+    var q = (input.value || '').trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function(card){
+      var key = (card.getAttribute('data-key') || '') + ' ' + card.textContent;
+      var hit = q === '' || key.toLowerCase().indexOf(q) !== -1;
+      card.classList.toggle('hidden-by-search', !hit);
+      if (hit) shown++;
+    });
+    if (noResult) noResult.classList.toggle('show', shown === 0 && q !== '');
+  }
+
+  if (input) {
+    input.addEventListener('input', applySearch);
+    input.addEventListener('search', applySearch);
+    input.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') { input.value = ''; applySearch(); }
+    });
+  }
+
+  var joinBtn = document.getElementById('joinBtn');
+  if (joinBtn) {
+    joinBtn.addEventListener('click', function(){
+      var el = document.getElementById('comments');
+      if (el) {
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        el.setAttribute('tabindex','-1');
+        el.focus({preventScroll:true});
+      }
+    });
+  }
+})();
+</script>
+</body>
+                </html>
